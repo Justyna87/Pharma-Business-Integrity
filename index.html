@@ -3,13 +3,66 @@
   <title>Helping your business to become compliant!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: Arial; margin: 0; }
+    body { font-family: Arial, sans-serif; margin: 0; color: #222; }
     header { background: #333; color: white; padding: 20px; text-align: center; }
     nav { background: #555; padding: 10px; text-align: center; }
     nav a { color: white; margin: 10px; text-decoration: none; }
     section { padding: 40px; }
     .hero { background: #f4f4f4; text-align: center; }
+    #services { text-align: center; }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 30px auto 0;
+    }
+    .service-tile {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      height: 230px;
+      padding: 0;
+      perspective: 1000px;
+      text-align: left;
+      width: 100%;
+    }
+    .service-tile:focus-visible { outline: 3px solid #1769aa; outline-offset: 4px; }
+    .service-tile-inner {
+      display: block;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      width: 100%;
+    }
+    .service-tile.is-flipped .service-tile-inner { transform: rotateY(180deg); }
+    .service-tile-front, .service-tile-back {
+      align-items: center;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      padding: 24px;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+    }
+    .service-tile-front { background: #f4f4f4; color: #333; }
+    .service-tile-front h3 { font-size: 1.8rem; margin: 0 0 12px; }
+    .service-tile-front p, .service-tile-back p { line-height: 1.5; margin: 0; }
+    .service-tile-back { background: #333; color: white; transform: rotateY(180deg); }
+    .service-tile-back strong { font-size: 1.2rem; margin-bottom: 12px; }
     footer { background: #333; color: white; text-align: center; padding: 10px; }
+    @media (prefers-reduced-motion: reduce) {
+      .service-tile-inner { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -37,12 +90,57 @@
 
 <section id="services">
   <h2>Our Services</h2>
-  <ul>
-    <li>CSV</li>
-    <li>CSA</li>
-    <li>AI</li>
-    <li>SAP</li>
-  </ul>
+  <p>Select a tile to learn more. Select it again to return.</p>
+  <div class="service-grid">
+    <button class="service-tile" type="button" aria-pressed="false" aria-label="CSV: Computerized System Validation. Select to view details.">
+      <span class="service-tile-inner">
+        <span class="service-tile-front" aria-hidden="false">
+          <h3>CSV</h3>
+          <p>Computerized System Validation</p>
+        </span>
+        <span class="service-tile-back" aria-hidden="true">
+          <strong>Computerized System Validation</strong>
+          <span>Risk-based lifecycle support to help demonstrate that GxP computerized systems are fit for their intended use.</span>
+        </span>
+      </span>
+    </button>
+    <button class="service-tile" type="button" aria-pressed="false" aria-label="CSA: Computer Software Assurance. Select to view details.">
+      <span class="service-tile-inner">
+        <span class="service-tile-front" aria-hidden="false">
+          <h3>CSA</h3>
+          <p>Computer Software Assurance</p>
+        </span>
+        <span class="service-tile-back" aria-hidden="true">
+          <strong>Computer Software Assurance</strong>
+          <span>Practical, risk-based assurance that focuses testing and documentation on what matters most to patient safety and product quality.</span>
+        </span>
+      </span>
+    </button>
+    <button class="service-tile" type="button" aria-pressed="false" aria-label="AI: Artificial Intelligence. Select to view details.">
+      <span class="service-tile-inner">
+        <span class="service-tile-front" aria-hidden="false">
+          <h3>AI</h3>
+          <p>Artificial Intelligence</p>
+        </span>
+        <span class="service-tile-back" aria-hidden="true">
+          <strong>Artificial Intelligence</strong>
+          <span>Guidance on evaluating AI use cases, risks, governance, and controls for responsible use in regulated life-sciences settings.</span>
+        </span>
+      </span>
+    </button>
+    <button class="service-tile" type="button" aria-pressed="false" aria-label="SAP: SAP systems. Select to view details.">
+      <span class="service-tile-inner">
+        <span class="service-tile-front" aria-hidden="false">
+          <h3>SAP</h3>
+          <p>SAP Systems</p>
+        </span>
+        <span class="service-tile-back" aria-hidden="true">
+          <strong>SAP Systems</strong>
+          <span>Support for SAP validation and assurance activities, including requirements, risk assessment, testing, and lifecycle documentation.</span>
+        </span>
+      </span>
+    </button>
+  </div>
 </section>
 
 <section id="contact">
@@ -53,6 +151,17 @@
 <footer>
   <p>© 2026 Justyna_Business</p>
 </footer>
+
+<script>
+  document.querySelectorAll('.service-tile').forEach(function (tile) {
+    tile.addEventListener('click', function () {
+      var isFlipped = tile.classList.toggle('is-flipped');
+      tile.setAttribute('aria-pressed', String(isFlipped));
+      tile.querySelector('.service-tile-front').setAttribute('aria-hidden', String(isFlipped));
+      tile.querySelector('.service-tile-back').setAttribute('aria-hidden', String(!isFlipped));
+    });
+  });
+</script>
 
 </body>
 </html>
