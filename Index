@@ -16,7 +16,7 @@
 <body>
 
 <header>
-  <h1>Justyna validates</h1>
+  <h1>Keep it simple</h1>
   <p>Your slogan here</p>
 </header>
 
@@ -28,12 +28,12 @@
 
 <section class="hero">
   <h2>Welcome to our business</h2>
-  <p>We help you solve problems.</p>
+  <p>Integrity in evry innovation</p>
 </section>
 
 <section id="about">
   <h2>About Us</h2>
-  <p>In teh age of digital transformation it is important to care about your business and reputation</p>
+  <p>In the age of digital transformation it is important to care about your business and reputation</p>
 </section>
 
 <section id="services">
@@ -52,7 +52,7 @@
 </section>
 
 <footer>
-  <p>© 2026 Validation Business</p>
+  <p>© 2026 Pharma Business</p>
 </footer>
 
 </body>
