@@ -3,6 +3,7 @@
   <title>Helping your business to become compliant!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    :root { --clinical-teal: #0D9488; }
     body { font-family: Arial, sans-serif; margin: 0; color: #222; }
     header { background: #1B365D; color: white; padding: 20px; text-align: center; }
     nav { background: #555; padding: 10px; text-align: center; }
@@ -29,7 +30,7 @@
       text-align: left;
       width: 100%;
     }
-    .service-tile:focus-visible { outline: 3px solid #1769aa; outline-offset: 4px; }
+    .service-tile:focus-visible { outline: 3px solid var(--clinical-teal); outline-offset: 4px; }
     .service-tile-inner {
       display: block;
       height: 100%;
@@ -52,16 +53,27 @@
       padding: 24px;
       position: absolute;
       text-align: center;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
       width: 100%;
     }
     .service-tile-front { background: #f4f4f4; color: #333; }
-    .service-tile-front h3 { font-size: 1.8rem; margin: 0 0 12px; }
+    .service-tile-front h3 { color: var(--clinical-teal); font-size: 1.8rem; margin: 0 0 12px; }
     .service-tile-front p, .service-tile-back p { line-height: 1.5; margin: 0; }
     .service-tile-back { background: #333; color: white; transform: rotateY(180deg); }
     .service-tile-back strong { font-size: 1.2rem; margin-bottom: 12px; }
+    .service-tile:hover .service-tile-front,
+    .service-tile:focus-visible .service-tile-front {
+      background: var(--clinical-teal);
+      box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
+      color: white;
+    }
+    .service-tile:hover .service-tile-front h3,
+    .service-tile:focus-visible .service-tile-front h3 { color: white; }
+    .service-tile:hover .service-tile-back,
+    .service-tile:focus-visible .service-tile-back { background: var(--clinical-teal); }
     footer { background: #333; color: white; text-align: center; padding: 10px; }
     @media (prefers-reduced-motion: reduce) {
-      .service-tile-inner { transition: none; }
+      .service-tile-inner, .service-tile-front, .service-tile-back { transition: none; }
     }
   </style>
 </head>
