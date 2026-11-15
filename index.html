@@ -10,6 +10,21 @@
     nav a { color: white; margin: 10px; text-decoration: none; }
     section { padding: 40px; }
     .hero { background: #f4f4f4; text-align: center; }
+    .cta-button, .form-submit {
+      background: var(--clinical-teal);
+      border: 0;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      display: inline-block;
+      font: inherit;
+      font-weight: bold;
+      padding: 12px 22px;
+      text-decoration: none;
+    }
+    .cta-button:hover, .form-submit:hover { background: #0b766e; }
+    .cta-button:focus-visible, .form-submit:focus-visible, .contact-form input:focus-visible,
+    .contact-form textarea:focus-visible { outline: 3px solid #222; outline-offset: 3px; }
     #services { text-align: center; }
     .service-grid {
       display: grid;
@@ -71,6 +86,26 @@
     .service-tile:focus-visible .service-tile-front h3 { color: white; }
     .service-tile:hover .service-tile-back,
     .service-tile:focus-visible .service-tile-back { background: var(--clinical-teal); }
+    #contact { text-align: center; }
+    .contact-form {
+      box-sizing: border-box;
+      margin: 24px auto 0;
+      max-width: 560px;
+      text-align: left;
+    }
+    .contact-form[hidden] { display: none; }
+    .form-field { margin-bottom: 16px; }
+    .form-field label { display: block; font-weight: bold; margin-bottom: 6px; }
+    .contact-form input, .contact-form textarea {
+      border: 1px solid #777;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font: inherit;
+      padding: 10px;
+      width: 100%;
+    }
+    .contact-form textarea { min-height: 140px; resize: vertical; }
+    .form-note { font-size: 0.9rem; line-height: 1.5; }
     footer { background: #333; color: white; text-align: center; padding: 10px; }
     @media (prefers-reduced-motion: reduce) {
       .service-tile-inner, .service-tile-front, .service-tile-back { transition: none; }
@@ -93,6 +128,7 @@
 <section class="hero">
   <h2>Welcome to our business</h2>
   <p>We help you solve problems.</p>
+  <button class="cta-button" id="contact-cta" type="button" aria-expanded="false" aria-controls="contact-form">Contact Us</button>
 </section>
 
 <section id="about">
@@ -158,6 +194,26 @@
 <section id="contact">
   <h2>Contact</h2>
   <p>Email: your@email.com</p>
+  <form class="contact-form" id="contact-form" hidden>
+    <div class="form-field">
+      <label for="contact-name">Name</label>
+      <input id="contact-name" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div class="form-field">
+      <label for="contact-email">E-Mail address</label>
+      <input id="contact-email" name="email" type="email" autocomplete="email" required>
+    </div>
+    <div class="form-field">
+      <label for="contact-phone">Phone number</label>
+      <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
+    </div>
+    <div class="form-field">
+      <label for="contact-message">Message</label>
+      <textarea id="contact-message" name="message" required></textarea>
+    </div>
+    <p class="form-note">Submitting opens your email app to send your message to your@email.com.</p>
+    <button class="form-submit" type="submit">Send message</button>
+  </form>
 </section>
 
 <footer>
@@ -172,6 +228,30 @@
       tile.querySelector('.service-tile-front').setAttribute('aria-hidden', String(isFlipped));
       tile.querySelector('.service-tile-back').setAttribute('aria-hidden', String(!isFlipped));
     });
+  });
+
+  var contactCta = document.getElementById('contact-cta');
+  var contactForm = document.getElementById('contact-form');
+  contactCta.addEventListener('click', function () {
+    contactForm.hidden = false;
+    contactCta.setAttribute('aria-expanded', 'true');
+    document.getElementById('contact-name').focus();
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  contactForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var formData = new FormData(contactForm);
+    var message = [
+      'Name: ' + formData.get('name'),
+      'E-Mail: ' + formData.get('email'),
+      'Phone: ' + (formData.get('phone') || 'Not provided'),
+      '',
+      'Message:',
+      formData.get('message')
+    ].join('\n');
+    var subject = 'Website contact from ' + formData.get('name');
+    window.location.href = 'mailto:your@email.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(message);
   });
 </script>
 
