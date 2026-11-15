@@ -9,7 +9,15 @@
     nav { background: #555; padding: 10px; text-align: center; }
     nav a { color: white; margin: 10px; text-decoration: none; }
     section { padding: 40px; }
-    .hero { background: #f4f4f4; text-align: center; }
+    .hero {
+      align-items: center;
+      background: linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('hero-background.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 320px;
+      text-align: center;
+    }
     footer { background: #333; color: white; text-align: center; padding: 10px; }
   </style>
 </head>
