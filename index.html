@@ -14,7 +14,7 @@
     nav { background: #555; padding: 10px; text-align: center; }
     nav a { color: #81cdc6; margin: 10px; text-decoration: none; }
     section { padding: 40px; }
-    .hero { background: #dff4f1; text-align: center; }
+    .hero { background: #f4f4f4; text-align: center; }
     .cta-button, .form-submit {
       background: var(--clinical-teal);
       border: 0;
@@ -30,6 +30,19 @@
     .cta-button:hover, .form-submit:hover { background: #0b766e; }
     .cta-button:focus-visible, .form-submit:focus-visible, .contact-form input:focus-visible,
     .contact-form textarea:focus-visible { outline: 3px solid #222; outline-offset: 3px; }
+    #about { text-align: center; }
+    .about-tile {
+      background: #f4f4f4;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+      box-sizing: border-box;
+      margin: 30px auto 0;
+      max-width: 1000px;
+      padding: 24px;
+      width: 100%;
+    }
+    .about-tile h2 { margin-top: 0; }
+    .about-tile p { line-height: 1.5; margin-bottom: 0; }
     #services { text-align: center; }
     .service-grid {
       display: grid;
@@ -112,6 +125,10 @@
     .contact-form textarea { min-height: 140px; resize: vertical; }
     .form-note { font-size: 0.9rem; line-height: 1.5; }
     footer { background: #333; color: white; text-align: center; padding: 10px; }
+    @media (max-width: 600px) {
+      section { padding: 28px 20px; }
+      .about-tile { padding: 20px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       .service-tile-inner, .service-tile-front, .service-tile-back { transition: none; }
     }
@@ -137,8 +154,10 @@
 </section>
 
 <section id="about">
-  <h2>About Us</h2>
-  <p>With years of experience in GxP environments and familiarity with FDA 21 CFR Part 11 and EU Annex 11, we help businesses navigate regulatory requirements and protect their reputation.</p>
+  <div class="about-tile">
+    <h2>About Us</h2>
+    <p>With years of experience in GxP environments and familiarity with FDA 21 CFR Part 11 and EU Annex 11, we help businesses navigate regulatory requirements and protect their reputation.</p>
+  </div>
 </section>
 
 <section id="services">
